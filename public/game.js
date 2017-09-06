@@ -100,6 +100,11 @@ function init(){
 }
 
 
+
+//CONDICIÓN PARA ACTIVAR LOS EVENTOS DE CLICK EN UNA RESOLUCIÓN DE DESKTOP
+if(screen.width >= 1024){
+    
+   
 //SE CREAN EVENTOS DE CLICK PARA ACTIVAR A CADA SOSPECHOSO
 document.addEventListener("click",function(evt){
     
@@ -173,7 +178,249 @@ document.addEventListener("click",function(evt){
     }
     
 },false);
+    
+   
+} //PARA RESOLUCIÓN MEDIANA
+else if(screen.width >= 768){
+        
+    
+    //SE CREAN EVENTOS DE CLICK PARA ACTIVAR A CADA SOSPECHOSO
+document.addEventListener("click",function(evt){
+    
+    mouseX = evt.pageX - canvas.offsetLeft;
+    mouseY = evt.pageY - canvas.offsetTop;
+    
+    //SOSPECHOSO 1
+    if((mouseX >= 194 && mouseX <= 236) && (mouseY > 196 && mouseY < 272)){
+        alert("Sospechoso 1");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 2
+    if((mouseX >= 463 && mouseX <= 503) && (mouseY > 156 && mouseY < 225)){
+        alert("Sospechoso 2");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 3
+    if((mouseX >= 427 && mouseX <= 460) && (mouseY > 312 && mouseY < 380)){
+        alert("Sospechoso 3");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 4
+    if((mouseX >= 434 && mouseX <= 472) && (mouseY > 192 && mouseY < 278)){
+        alert("Sospechoso 4");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 5
+    if((mouseX >= 52 && mouseX <= 96) && (mouseY > 63 && mouseY < 147)){
+        alert("Sospechoso 5");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 6
+    if((mouseX >= 49 && mouseX <= 96) && (mouseY > 206 && mouseY < 278)){
+        alert("Sospechoso 6");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 7
+    if((mouseX >= 94 && mouseX <= 140) && (mouseY > 243 && mouseY < 327)){
+        alert("Sospechoso 7");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 8
+    if((mouseX >= 463 && mouseX <= 520) && (mouseY > 296 && mouseY < 378)){
+        alert("Sospechoso 8");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 9
+    if((mouseX >= 72 && mouseX <= 116) && (mouseY > 147 && mouseY < 218)){
+        alert("Sospechoso 9");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 10
+    if((mouseX >= 727 && mouseX <= 758) && (mouseY > 200 && mouseY < 294)){
+        alert("Sospechoso 10");
+        console.log("toco al sospechoso");
+    }
+    
+    //TERRORISTA
+    if((mouseX >= 9 && mouseX <= 58) && (mouseY > 132 && mouseY < 216)){
+        alert("TERRORISTA");
+        console.log("toco al sospechoso");
+    }
+    
+},false);
+    
+    
+} //PARA RESOLUCIONES PEQUEÑAS
+else if(screen.width >= 360){
+    
+    
+       //SE CREAN EVENTOS DE CLICK PARA ACTIVAR A CADA SOSPECHOSO
+document.addEventListener("click",function(evt){
+    
+    mouseX = evt.pageX - canvas.offsetLeft;
+    mouseY = evt.pageY - canvas.offsetTop;
+    
+    //SOSPECHOSO 1
+    if((mouseX >= 86 && mouseX <= 108) && (mouseY > 88 && mouseY < 126)){
+        alert("Sospechoso 1");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 2
+    if((mouseX >= 212 && mouseX <= 230) && (mouseY > 72 && mouseY < 106)){
+        alert("Sospechoso 2");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 3
+    if((mouseX >= 198 && mouseX <= 214) && (mouseY > 140 && mouseY < 174)){
+        alert("Sospechoso 3");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 4
+    if((mouseX >= 197 && mouseX <= 215) && (mouseY > 89 && mouseY < 130)){
+        alert("Sospechoso 4");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 5
+    if((mouseX >= 26 && mouseX <= 46) && (mouseY > 30 && mouseY < 70)){
+        alert("Sospechoso 5");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 6
+    if((mouseX >= 26 && mouseX <= 46) && (mouseY > 94 && mouseY < 135)){
+        alert("Sospechoso 6");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 7
+    if((mouseX >= 48 && mouseX <= 63) && (mouseY > 112 && mouseY < 150)){
+        alert("Sospechoso 7");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 8
+    if((mouseX >= 216 && mouseX <= 239) && (mouseY > 138 && mouseY < 175)){
+        alert("Sospechoso 8");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 9
+    if((mouseX >= 36 && mouseX <= 53) && (mouseY > 65 && mouseY < 105)){
+        alert("Sospechoso 9");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 10
+    if((mouseX >= 336 && mouseX <= 349) && (mouseY > 96 && mouseY < 135)){
+        alert("Sospechoso 10");
+        console.log("toco al sospechoso");
+    }
+    
+    //TERRORISTA
+    if((mouseX >= 6 && mouseX <= 30) && (mouseY > 63 && mouseY < 101)){
+        alert("TERRORISTA");
+        console.log("toco al sospechoso");
+    }
+    
+},false);
+    
+    
+} //PARA RESOLUCIONES MUY PEQUEÑAS
+else if(screen.width >= 320){
+    
+    
+    
+       //SE CREAN EVENTOS DE CLICK PARA ACTIVAR A CADA SOSPECHOSO
+document.addEventListener("click",function(evt){
+    
+    mouseX = evt.pageX - canvas.offsetLeft;
+    mouseY = evt.pageY - canvas.offsetTop;
+    
+    //SOSPECHOSO 1
+    if((mouseX >= 74 && mouseX <= 100) && (mouseY > 80 && mouseY < 112)){
+        alert("Sospechoso 1");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 2
+    if((mouseX >= 188 && mouseX <= 206) && (mouseY > 62 && mouseY < 97)){
+        alert("Sospechoso 2");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 3
+    if((mouseX >= 176 && mouseX <= 191) && (mouseY > 122 && mouseY < 156)){
+        alert("Sospechoso 3");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 4
+    if((mouseX >= 174 && mouseX <= 196) && (mouseY > 79 && mouseY < 118)){
+        alert("Sospechoso 4");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 5
+    if((mouseX >= 22 && mouseX <= 43) && (mouseY > 28 && mouseY < 62)){
+        alert("Sospechoso 5");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 6
+    if((mouseX >= 22 && mouseX <= 39) && (mouseY > 82 && mouseY < 118)){
+        alert("Sospechoso 6");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 7
+    if((mouseX >= 38 && mouseX <= 57) && (mouseY > 98 && mouseY < 134)){
+        alert("Sospechoso 7");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 8
+    if((mouseX >= 190 && mouseX <= 213) && (mouseY > 122 && mouseY < 155)){
+        alert("Sospechoso 8");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 9
+    if((mouseX >= 30 && mouseX <= 47) && (mouseY > 60 && mouseY < 93)){
+        alert("Sospechoso 9");
+        console.log("toco al sospechoso");
+    }
+    
+    //SOSPECHOSO 10
+    if((mouseX >= 297 && mouseX <= 311) && (mouseY > 86 && mouseY < 122)){
+        alert("Sospechoso 10");
+        console.log("toco al sospechoso");
+    }
+    
+    //TERRORISTA
+    if((mouseX >= 6 && mouseX <= 26) && (mouseY > 54 && mouseY < 91)){
+        alert("TERRORISTA");
+        console.log("toco al sospechoso");
+    }
+    
+},false);
+        
+}
 
+
+console.log("Resolucion "+screen.width);
 
 
 document.addEventListener("mousemove",function(evt){
