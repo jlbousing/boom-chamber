@@ -4,14 +4,17 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Boom Chase</title>
+        
+        
     </head>
     
-    <body>
+    <body >
         
         
         <canvas id="canvas" style="border: solid">Your browser doesn't work with canvas :( </canvas>
         
-     
+        <div id="pista"></div>
+        
         <style>
             #canvas{
               width: 100%;
@@ -19,8 +22,15 @@
               display: block;
               border: 1px solid #d9d9d9;
            }
+            
+            #pista p{
+                    text-align:center;
+                    font-size: 50px;
+            }   
+            
         </style>
-       
+        
         <script src="public/game.js"></script>
+        <script src="public/menu.js"></script>
     </body>
 </html>
