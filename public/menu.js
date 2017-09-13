@@ -1,12 +1,11 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var mainScreen = new Image();
-var startBotton = new Image();
-
+ 
 var mouseX, mouseY = 0;
 
 window.addEventListener("load",menu);
-//window.addEventListener("resize",resize,false);
+
 
 
 //MENÚ PARA SELECCIONAR EL LENGUAJE PARA EL USUARIO
@@ -26,62 +25,17 @@ function menu(){
 
 function start(){
     
-    //resize();
     mainScreen.src = "Assets/sprites/MAIN-SCREEN-BN-min.png";
-    startBotton.src = "Assets/sprites/Start Button-min.png";
+   
     
     mainScreen.onload = function(){
         ctx.drawImage(mainScreen,0,-20);
     }
     
-    startBotton.onload = function(){
-        ctx.drawImage(startBotton,135,130);
-    }
+    
+    
 }
 
-/*
-function resize(){
-    
-     //SE CALCULA LA PROPORCIÓN IDEAL PARA LA PANTALLA
-     var w = window.innerWidth / canvas.width;
-     var h = window.innerHeight / canvas.height;
-     var scale = Math.min(h, w);
-    
-     //SE ASIGNA EL ANCHO Y ALTO
-     canvas.style.width = (canvas.width * scale) + 'px';
-     canvas.style.height = (canvas.height * scale) + 'px';
-}
-*/
-
-
-/*
-document.addEventListener("click",function(evt){
-    
-    mouseX = evt.pageX - canvas.offsetLeft;
-    mouseY = evt.pageY - canvas.offsetTop;
-    
-    if(screen.width >= 1024){
-       
-         if((mouseX >= 581 && mouseX <= 735) && (mouseY > 552 && mouseY < 585) && !isStart){
-                 alert("SE PRENDIO");
-                 isStart = true;
-                 console.log("EL JUEGO HA INICIADO :) ");
-         }
-         else if(screen.width >= 768){
-              
-              if((mouseX >= 332 && mouseX <= 447) && (mouseY > 327 && mouseY < 347) && !isStart){
-                        alert("SE PRENDIO");
-                        isStart = true;
-                        console.log("EL JUEGO HA INICIADO :)");
-                 }
-         }
-        
-     }
-    
-    
-},false);
-
-*/
 
 
 
@@ -106,7 +60,7 @@ if(screen.width >= 1024){
                 start();
          }
         
-        if((mouseX >= 607 && mouseX <= 771) && (mouseY > 574 && mouseY < 612) && !isStart){
+        if((mouseX >= 627 && mouseX <= 792) && (mouseY > 608 && mouseY < 645) && !isStart){
               
               isStart = true;
               init();
@@ -145,7 +99,7 @@ else if(screen.width >= 768){
                  
                  isStart = true;
                  init(); //SE CAMBIA DE ESCENA
-                 crearImg("Assets/sprites/pista1.png");
+                
             }
          
             
@@ -179,10 +133,41 @@ else if(screen.width >= 360){
                  
                  isStart = true;
                  init(); //SE CAMBIA DE ESCENA
-                 crearImg("Assets/sprites/pista1.png");
+                 
             }
         
     },false);
     
+}
+else if(screen.width >= 320){
+    
+    document.addEventListener("click",function(evt){
+        
+        mouseX = evt.pageX - canvas.offsetLeft;
+        mouseY = evt.pageY - canvas.offsetTop;
+        
+        if((mouseX >= 46 && mouseX <= 116) && (mouseY > 70 && mouseY < 92) && !isStart && !isSelected){
+                
+                
+                english = false;
+                start();
+            }
+         
+             if((mouseX >= 199 && mouseX <= 268) && (mouseY > 77 && mouseY < 102) && !isStart && !isSelected){
+                
+                
+                english = true;
+                start();
+            }
+        
+        
+         if((mouseX >= 150 && mouseX <= 208) && (mouseY > 143 && mouseY < 164) && !isStart){
+                 
+                 isStart = true;
+                 init(); //SE CAMBIA DE ESCENA
+                
+            }
+        
+    },false);
 }
 

@@ -6,23 +6,22 @@ var isSelected = false;
 var english = null;
 
 var background = new Image();
-var estatua = new Image();
-var muchedumbre = new Image();
-var sospechoso1 = new Image();
-var sospechoso2 = new Image();
-var sospechoso3 = new Image();
-var sospechoso4 = new Image();
-var sospechoso5 = new Image();
-var sospechoso6 = new Image();
-var sospechoso7 = new Image();
-var sospechoso8 = new Image();
-var sospechoso9 = new Image();
-var sospechoso10 = new Image();
-var terrorista = new Image();
 
-var pista1 = new Image();
-var pista2 = new Image();
-var pista3 = new Image();
+
+//ACTIVADORES DE PISTAS
+var pista1 = false;
+var pista2 = false;
+var pista3 = false;
+var pista4 = false;
+var pista5 = false;
+var pista6 = false;
+
+
+var centesimas = 60;
+var segundos = 60;
+var minutos = 5;
+
+var reloj = null;
 
 //window.addEventListener("load",init);
 
@@ -30,84 +29,17 @@ var pista3 = new Image();
 //MÉTODO QUE INICIALIZA EL JUEGO
 function init(){
     
-    background.src = "Assets/sprites/img/Piso-Mar-min.png"; 
-    estatua.src = "Assets/sprites/img/Estatua-min.png";
-    muchedumbre.src = "Assets/sprites/img/Muchedumbre-min.png";
-    sospechoso1.src = "Assets/sprites/img/sospechoso1.png";
-    sospechoso2.src = "Assets/sprites/img/sospechoso2.png";
-    sospechoso3.src = "Assets/sprites/img/sospechoso3.png";
-    sospechoso4.src = "Assets/sprites/img/sospechoso4.png";
-    sospechoso5.src = "Assets/sprites/img/sospechoso5.png";
-    sospechoso6.src = "Assets/sprites/img/sospechoso6.png";
-    sospechoso7.src = "Assets/sprites/img/sospechoso7.png";
-    sospechoso8.src = "Assets/sprites/img/sospechoso8.png";
-    sospechoso9.src = "Assets/sprites/img/sospechoso9.png";
-    sospechoso10.src = "Assets/sprites/img/sospechoso10.png"; 
-    terrorista.src = "Assets/sprites/img/terrorista.png";
-    pista1.src = "Assets/sprites/pista1.png";
-    pista2.src = "Assets/sprites/pista2.png";
-    pista3.src = "Assets/sprites/pista3.png";
+    background.src = "Assets/sprites/img/BG_BombChase_320x200px_Flateado-min.png"; 
     
     //VALIDACIÓN PARA QUE DIBUJE LA IMAGEN EL CANVAS SOLO CUANDO LA IMAGEN SE CARGUE
     background.onload = function(){
-        ctx.drawImage(background,0,0);
+        ctx.drawImage(background,0,-15);
     }
     
     
-    estatua.onload = function(){
-        ctx.drawImage(estatua,195,0);
-    }
+    pista0(); //SE ACTIVA LA PRIMERA PISTA
     
-    muchedumbre.onload = function(){
-        ctx.drawImage(muchedumbre,0,13);
-    }
-    
-    sospechoso1.onload = function(){
-        ctx.drawImage(sospechoso1,73,75);
-    }
-    
-    sospechoso2.onload = function(){
-        ctx.drawImage(sospechoso2,184,60);
-    }
-    
-    sospechoso3.onload = function(){
-        ctx.drawImage(sospechoso3,170,120);
-    }
-    
-    sospechoso4.onload = function(){
-        ctx.drawImage(sospechoso4,170,75);
-    }
-    
-    sospechoso5.onload = function(){
-        ctx.drawImage(sospechoso5,20,25);
-    }
-    
-    sospechoso6.onload = function(){
-        ctx.drawImage(sospechoso6,20,80);
-    }
-    
-    sospechoso7.onload = function(){
-       ctx.drawImage(sospechoso7,35,95);
-    }
-    
-    sospechoso8.onload = function(){
-        ctx.drawImage(sospechoso8,185,120);
-    }
-    
-    sospechoso9.onload = function(){
-        ctx.drawImage(sospechoso9,30,55);
-    }
-    
-    sospechoso10.onload = function(){
-        ctx.drawImage(sospechoso10,290,83);
-    }
-    
-    terrorista.onload = function(){
-        ctx.drawImage(terrorista,5,50);
-    }
-    
-    
-    textoPista1(); //SE ACTIVA LA PRIMERA PISTA
+     reloj = setInterval(cronometro,10);
 }
 
 
@@ -122,71 +54,90 @@ document.addEventListener("click",function(evt){
     mouseX = evt.pageX - canvas.offsetLeft;
     mouseY = evt.pageY - canvas.offsetTop;
     
-    //SOSPECHOSO 1
-    if((mouseX >= 338 && mouseX <= 415) && (mouseY > 342 && mouseY < 477) && isStart){
-        alert("Sospechoso 1");
-        console.log("toco al sospechoso");
+    
+    if((mouseX >= 211 && mouseX <= 268) && (mouseY > 194 && mouseY < 350) && isStart){
+         
+        if(english){
+            alert("Suspicious: I just left that heavy backpack where they asked me while the traveler 'distracted the police'");
+        }
+        else{
+            alert("Sospechoso: yo solo dejé esa pesada mochila donde me lo pidieron mientras el viajero 'distraía a la policía'");
+        }
+        
+        textoPista1();
     }
     
-    //SOSPECHOSO 2
-    if((mouseX >= 825 && mouseX <= 873) && (mouseY > 276 && mouseY < 405) && isStart){
-        alert("Sospechoso 2");
-        console.log("toco al sospechoso");
+    
+    if((mouseX >= 643 && mouseX <= 740) && (mouseY > 448 && mouseY < 629) && isStart){
+        
+        if(pista1){
+            if(english){
+            alert('Traveler: "You can never capture us, we have a photographer falsifying clues"');
+        }
+        else{
+            alert('Viajero: "Tú nunca nos atraparas, tenemos a un fotografo falsificando todo"');
+        }
+        
+        textoPista2();
+        }
     }
     
-    //SOSPECHOSO 3
-    if((mouseX >= 764 && mouseX <= 817) && (mouseY > 540 && mouseY < 669) && isStart){
-        alert("Sospechoso 3");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 4
-    if((mouseX >= 768 && mouseX <= 824) && (mouseY > 344 && mouseY < 493) && isStart){
-        alert("Sospechoso 4");
-        console.log("toco al sospechoso");
-    }
     
     //SOSPECHOSO 5
     if((mouseX >= 107 && mouseX <= 166) && (mouseY > 120 && mouseY < 262) && isStart){
-        alert("Sospechoso 5");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 6
-    if((mouseX >= 99 && mouseX <= 160) && (mouseY > 365 && mouseY < 503) && isStart){
-        alert("Sospechoso 6");
-        console.log("toco al sospechoso");
+        
+        if(pista2){
+            
+            if(english){
+               alert('Photographer: "a romantic sign will start the big countdown"');
+            }else{
+                alert('Fotógrafo: “una romántica señal dará el inicio a la gran cuenta regresiva”');
+            }
+        
+             textoPista4();
+        }
     }
     
     //SOSPECHOSO 7
     if((mouseX >= 165 && mouseX <= 223) && (mouseY > 430 && mouseY < 573) && isStart){
-        alert("Sospechoso 7");
-        console.log("toco al sospechoso");
+        
+        if(pista4){
+            
+            if(english){
+                alert('In love: "Its too late, the boss is a master of disguise and while escaping activated the mechanism"');
+            }
+            else{
+               alert('Enamorados: “es muy tarde, el jefe es un maestro del disfraz y mientras escapa activó el mecanismo”');
+            } 
+        
+             textoPista5();
+        }
     }
     
-    //SOSPECHOSO 8
-    if((mouseX >= 831 && mouseX <= 909) && (mouseY > 541 && mouseY < 669) && isStart){
-        alert("Sospechoso 8");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 9
-    if((mouseX >= 142 && mouseX <= 190) && (mouseY > 258 && mouseY < 329) && isStart){
-        alert("Sospechoso 9");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 10
-    if((mouseX >= 1311 && mouseX <= 1335) && (mouseY > 363 && mouseY < 516) && isStart){
-        alert("Sospechoso 10");
-        console.log("toco al sospechoso");
-    }
     
     //TERRORISTA
     if((mouseX >= 35 && mouseX <= 99) && (mouseY > 244 && mouseY < 376) && isStart){
-        alert("TERRORISTA");
-        console.log("toco al sospechoso");
+        
+        if(pista5){
+            
+            if(english){
+            
+               alert('Boss: "But how? Sooner or later you will know about me ...');
+            }
+            else{
+               alert('Jefe: “¿Pero cómo? Tarde o temprano volverás a saber de mi… ');
+            }
+        }
+        
+        //SE CAMBIA LA PANTALLA A GAME OVER
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.font = "bold 30px Consolas";
+        ctx.fillText("YOU WIN!!",50,50);
+        clearInterval(reloj);
     }
+    
     
 },false);
     
@@ -201,71 +152,92 @@ document.addEventListener("click",function(evt){
     mouseX = evt.pageX - canvas.offsetLeft;
     mouseY = evt.pageY - canvas.offsetTop;
     
-    //SOSPECHOSO 1
-    if((mouseX >= 194 && mouseX <= 236) && (mouseY > 196 && mouseY < 272) && isStart){
-        alert("Sospechoso 1");
-        console.log("toco al sospechoso");
+    
+    
+    if((mouseX >= 105 && mouseX <= 161) && (mouseY > 96 && mouseY < 210) && isStart){
+         
+        if(english){
+            alert("Suspicious: I just left that heavy backpack where they asked me while the traveler 'distracted the police'");
+        }
+        else{
+            alert("Sospechoso: yo solo dejé esa pesada mochila donde me lo pidieron mientras el viajero 'distraía a la policía'");
+        }
+        
+        textoPista1();
     }
     
-    //SOSPECHOSO 2
-    if((mouseX >= 463 && mouseX <= 503) && (mouseY > 156 && mouseY < 225) && isStart){
-        alert("Sospechoso 2");
-        console.log("toco al sospechoso");
+    
+     if((mouseX >= 347 && mouseX <= 424) && (mouseY > 268 && mouseY < 354) && isStart){
+        
+         if(pista1){
+            if(english){
+            alert('Traveler: "You can never capture us, we have a photographer falsifying clues"');
+        }
+        else{
+            alert('Viajero: "Tú nunca nos atraparas, tenemos a un fotografo falsificando todo"');
+        }
+        
+        textoPista2();
+        }
+         
     }
     
-    //SOSPECHOSO 3
-    if((mouseX >= 427 && mouseX <= 460) && (mouseY > 312 && mouseY < 380) && isStart){
-        alert("Sospechoso 3");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 4
-    if((mouseX >= 434 && mouseX <= 472) && (mouseY > 192 && mouseY < 278) && isStart){
-        alert("Sospechoso 4");
-        console.log("toco al sospechoso");
-    }
-    
+   
     //SOSPECHOSO 5
     if((mouseX >= 52 && mouseX <= 96) && (mouseY > 63 && mouseY < 147) && isStart){
-        alert("Sospechoso 5");
-        console.log("toco al sospechoso");
+        
+        if(pista2){
+            
+            if(english){
+               alert('Photographer: "a romantic sign will start the big countdown"');
+            }else{
+                alert('Fotógrafo: “una romántica señal dará el inicio a la gran cuenta regresiva”');
+            }
+        
+             textoPista4();
+        }
     }
     
-    //SOSPECHOSO 6
-    if((mouseX >= 49 && mouseX <= 96) && (mouseY > 206 && mouseY < 278) && isStart){
-        alert("Sospechoso 6");
-        console.log("toco al sospechoso");
-    }
     
     //SOSPECHOSO 7
     if((mouseX >= 94 && mouseX <= 140) && (mouseY > 243 && mouseY < 327) && isStart){
-        alert("Sospechoso 7");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 8
-    if((mouseX >= 463 && mouseX <= 520) && (mouseY > 296 && mouseY < 378) && isStart){
-        alert("Sospechoso 8");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 9
-    if((mouseX >= 72 && mouseX <= 116) && (mouseY > 147 && mouseY < 218) && isStart){
-        alert("Sospechoso 9");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 10
-    if((mouseX >= 727 && mouseX <= 758) && (mouseY > 200 && mouseY < 294) && isStart){
-        alert("Sospechoso 10");
-        console.log("toco al sospechoso");
+        
+        if(pista4){
+            
+            if(english){
+                alert('In love: "Its too late, the boss is a master of disguise and while escaping activated the mechanism"');
+            }
+            else{
+               alert('Enamorados: “es muy tarde, el jefe es un maestro del disfraz y mientras escapa activó el mecanismo”');
+            } 
+        
+             textoPista5();
+        }
     }
     
     //TERRORISTA
     if((mouseX >= 9 && mouseX <= 58) && (mouseY > 132 && mouseY < 216) && isStart){
-        alert("TERRORISTA");
-        console.log("toco al sospechoso");
+        
+        if(pista5){
+            
+            if(english){
+            
+               alert('Boss: "But how? Sooner or later you will know about me ...');
+            }
+            else{
+               alert('Jefe: “¿Pero cómo? Tarde o temprano volverás a saber de mi… ');
+            }
+        }
+        
+        //SE CAMBIA LA PANTALLA A GAME OVER
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.font = "bold 30px Consolas";
+        ctx.fillText("YOU WIN!!!",50,50);
+        clearInterval(reloj);
     }
+    
     
 },false);
     
@@ -280,71 +252,92 @@ document.addEventListener("click",function(evt){
     mouseX = evt.pageX - canvas.offsetLeft;
     mouseY = evt.pageY - canvas.offsetTop;
     
-    //SOSPECHOSO 1
-    if((mouseX >= 86 && mouseX <= 108) && (mouseY > 88 && mouseY < 126) && isStart){
-        alert("Sospechoso 1");
-        console.log("toco al sospechoso");
+    
+    
+    if((mouseX >= 47 && mouseX <= 79) && (mouseY > 50 && mouseY < 95) && isStart){
+         
+        if(english){
+            alert("Suspicious: I just left that heavy backpack where they asked me while the traveler 'distracted the police'");
+        }
+        else{
+            alert("Sospechoso: yo solo dejé esa pesada mochila donde me lo pidieron mientras el viajero 'distraía a la policía'");
+        }
+        
+        textoPista1();
     }
     
-    //SOSPECHOSO 2
-    if((mouseX >= 212 && mouseX <= 230) && (mouseY > 72 && mouseY < 106) && isStart){
-        alert("Sospechoso 2");
-        console.log("toco al sospechoso");
+    
+     if((mouseX >= 160 && mouseX <= 197) && (mouseY > 121 && mouseY < 168) && isStart){
+        
+         if(pista1){
+            if(english){
+            alert('Traveler: "You can never capture us, we have a photographer falsifying clues"');
+        }
+        else{
+            alert('Viajero: "Tú nunca nos atraparas, tenemos a un fotografo falsificando todo"');
+        }
+        
+        textoPista2();
+        }
     }
     
-    //SOSPECHOSO 3
-    if((mouseX >= 198 && mouseX <= 214) && (mouseY > 140 && mouseY < 174) && isStart){
-        alert("Sospechoso 3");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 4
-    if((mouseX >= 197 && mouseX <= 215) && (mouseY > 89 && mouseY < 130) && isStart){
-        alert("Sospechoso 4");
-        console.log("toco al sospechoso");
-    }
+
     
     //SOSPECHOSO 5
     if((mouseX >= 26 && mouseX <= 46) && (mouseY > 30 && mouseY < 70) && isStart){
-        alert("Sospechoso 5");
-        console.log("toco al sospechoso");
+        
+        if(pista2){
+            
+            if(english){
+               alert('Photographer: "a romantic sign will start the big countdown"');
+            }else{
+                alert('Fotógrafo: “una romántica señal dará el inicio a la gran cuenta regresiva”');
+            }
+        
+             textoPista4();
+        }
     }
     
-    //SOSPECHOSO 6
-    if((mouseX >= 26 && mouseX <= 46) && (mouseY > 94 && mouseY < 135) && isStart){
-        alert("Sospechoso 6");
-        console.log("toco al sospechoso");
-    }
     
     //SOSPECHOSO 7
     if((mouseX >= 48 && mouseX <= 63) && (mouseY > 112 && mouseY < 150) && isStart){
-        alert("Sospechoso 7");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 8
-    if((mouseX >= 216 && mouseX <= 239) && (mouseY > 138 && mouseY < 175) && isStart){
-        alert("Sospechoso 8");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 9
-    if((mouseX >= 36 && mouseX <= 53) && (mouseY > 65 && mouseY < 105) && isStart){
-        alert("Sospechoso 9");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 10
-    if((mouseX >= 336 && mouseX <= 349) && (mouseY > 96 && mouseY < 135) && isStart){
-        alert("Sospechoso 10");
-        console.log("toco al sospechoso");
+        
+        if(pista4){
+            
+            if(english){
+                alert('In love: "Its too late, the boss is a master of disguise and while escaping activated the mechanism"');
+            }
+            else{
+               alert('Enamorados: “es muy tarde, el jefe es un maestro del disfraz y mientras escapa activó el mecanismo”');
+            } 
+        
+             textoPista5();
+        }
     }
     
     //TERRORISTA
     if((mouseX >= 6 && mouseX <= 30) && (mouseY > 63 && mouseY < 101) && isStart){
-        alert("TERRORISTA");
-        console.log("toco al sospechoso");
+        
+         if(pista5){
+            
+            if(english){
+            
+               alert('Boss: "But how? Sooner or later you will know about me ...');
+            }
+            else{
+               alert('Jefe: “¿Pero cómo? Tarde o temprano volverás a saber de mi… ');
+            }
+        }
+        
+        //SE CAMBIA LA PANTALLA A GAME OVER
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.font = "bold 30px Consolas";
+        ctx.fillText("YOU WIN!!!",50,50);
+        clearInterval(reloj);
     }
+    
     
 },false);
     
@@ -360,71 +353,94 @@ document.addEventListener("click",function(evt){
     mouseX = evt.pageX - canvas.offsetLeft;
     mouseY = evt.pageY - canvas.offsetTop;
     
-    //SOSPECHOSO 1
-    if((mouseX >= 74 && mouseX <= 100) && (mouseY > 80 && mouseY < 112) && isStart){
-        alert("Sospechoso 1");
-        console.log("toco al sospechoso");
+    
+    
+    if((mouseX >= 42 && mouseX <= 71) && (mouseY > 41 && mouseY < 86) && isStart){
+         
+        if(english){
+            alert("Suspicious: I just left that heavy backpack where they asked me while the traveler 'distracted the police'");
+        }
+        else{
+            alert("Sospechoso: yo solo dejé esa pesada mochila donde me lo pidieron mientras el viajero 'distraía a la policía'");
+        }
+        
+        textoPista1();
     }
     
-    //SOSPECHOSO 2
-    if((mouseX >= 188 && mouseX <= 206) && (mouseY > 62 && mouseY < 97) && isStart){
-        alert("Sospechoso 2");
-        console.log("toco al sospechoso");
+    
+     if((mouseX >= 142 && mouseX <= 175) && (mouseY > 108 && mouseY < 145) && isStart){
+        
+         if(pista1){
+            if(english){
+            alert('Traveler: "You can never capture us, we have a photographer falsifying clues"');
+        }
+        else{
+            alert('Viajero: "Tú nunca nos atraparas, tenemos a un fotografo falsificando todo"');
+        }
+        
+        textoPista2();
+        }
     }
     
-    //SOSPECHOSO 3
-    if((mouseX >= 176 && mouseX <= 191) && (mouseY > 122 && mouseY < 156) && isStart){
-        alert("Sospechoso 3");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 4
-    if((mouseX >= 174 && mouseX <= 196) && (mouseY > 79 && mouseY < 118) && isStart){
-        alert("Sospechoso 4");
-        console.log("toco al sospechoso");
-    }
     
     //SOSPECHOSO 5
     if((mouseX >= 22 && mouseX <= 43) && (mouseY > 28 && mouseY < 62) && isStart){
-        alert("Sospechoso 5");
-        console.log("toco al sospechoso");
+        
+        if(pista2){
+            
+            if(english){
+               alert('Photographer: "a romantic sign will start the big countdown"');
+            }else{
+                alert('Fotógrafo: “una romántica señal dará el inicio a la gran cuenta regresiva”');
+            }
+        
+             textoPista4();
+        }
     }
     
-    //SOSPECHOSO 6
-    if((mouseX >= 22 && mouseX <= 39) && (mouseY > 82 && mouseY < 118) && isStart){
-        alert("Sospechoso 6");
-        console.log("toco al sospechoso");
-    }
+  
     
     //SOSPECHOSO 7
     if((mouseX >= 38 && mouseX <= 57) && (mouseY > 98 && mouseY < 134) && isStart){
-        alert("Sospechoso 7");
-        console.log("toco al sospechoso");
+        
+        if(pista4){
+            
+            if(english){
+                alert('In love: "Its too late, the boss is a master of disguise and while escaping activated the mechanism"');
+            }
+            else{
+               alert('Enamorados: “es muy tarde, el jefe es un maestro del disfraz y mientras escapa activó el mecanismo”');
+            } 
+        
+             textoPista5();
+        }
     }
     
-    //SOSPECHOSO 8
-    if((mouseX >= 190 && mouseX <= 213) && (mouseY > 122 && mouseY < 155) && isStart){
-        alert("Sospechoso 8");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 9
-    if((mouseX >= 30 && mouseX <= 47) && (mouseY > 60 && mouseY < 93) && isStart){
-        alert("Sospechoso 9");
-        console.log("toco al sospechoso");
-    }
-    
-    //SOSPECHOSO 10
-    if((mouseX >= 297 && mouseX <= 311) && (mouseY > 86 && mouseY < 122) && isStart){
-        alert("Sospechoso 10");
-        console.log("toco al sospechoso");
-    }
+ 
     
     //TERRORISTA
     if((mouseX >= 6 && mouseX <= 26) && (mouseY > 54 && mouseY < 91) && isStart){
-        alert("TERRORISTA");
-        console.log("toco al sospechoso");
+        
+        if(pista5){
+            
+            if(english){
+            
+               alert('Boss: "But how? Sooner or later you will know about me ...');
+            }
+            else{
+               alert('Jefe: “¿Pero cómo? Tarde o temprano volverás a saber de mi… ');
+            }
+        }
+        
+        //SE CAMBIA LA PANTALLA A GAME OVER
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.font = "bold 30px Consolas";
+        ctx.fillText("YOU WIN!!!!",50,50);
+        clearInterval(reloj);
     }
+    
     
 },false);
         
@@ -434,31 +450,146 @@ document.addEventListener("click",function(evt){
 console.log("Resolucion "+screen.width);
 
 
-/*
-document.addEventListener("mousemove",function(evt){
-    
-    mouseX = evt.pageX - canvas.offsetLeft;
-    mouseY = evt.pageY - canvas.offsetTop;
-    
-    console.log(mouseX+";"+mouseY);
-    
-    
-    
-},false); */
 
-//FUNCIÓN PARA CREAR IMAGENES DE LAS PISTAS EN EL DOM
+function pista0(){
+    
+        var parrafo = document.createElement("p");
+        
+        if(english){
+            var texto = document.createTextNode('"An informant saw a man with a cap prowling the area nervously"');
+       }else{
+           var texto = document.createTextNode(' “Un informante vio a un hombre con gorra merodeando la zona de forma nerviosa”');
+       }
+        
+        parrafo.appendChild(texto);
+        document.getElementById("pista").appendChild(parrafo);
+}
+
+
+
 function textoPista1(){
     
-    var parrafo = document.createElement('p');
-    
-    if(english){
-         var texto = document.createTextNode("Someone is prowling around, apparently in a rush, he dropped his suitcase");
+    if(!pista1){
+        
+        document.getElementById("pista").removeChild(document.getElementsByTagName("p")[0]);
+        
+        var parrafo = document.createElement("p");
+        
+        if(english){
+            var texto = document.createTextNode("Suspicious: I just left that heavy backpack where they asked me while the traveler 'distracted the police'");
+       }else{
+           var texto = document.createTextNode("Sospechoso: yo solo dejé esa pesada mochila donde me lo pidieron mientras el viajero 'distraía a la policía'");
+       }
+        
+        parrafo.appendChild(texto);
+        document.getElementById("pista").appendChild(parrafo);
     }
-    else{
-         var texto = document.createTextNode("Alguien está merodeando por ahí, aparentemente con prisa, dejó caer su maleta");
+    
+    pista1 = true;
+    
+}
+
+
+function textoPista2(){
+    
+    if(!pista2){
+        
+        document.getElementById("pista").removeChild(document.getElementsByTagName("p")[0]);
+        
+        var parrafo = document.createElement("p");
+        
+        if(english){
+            var texto = document.createTextNode('Traveler: "You can never capture us, we have a photographer falsifying clues"');
+       }else{
+           var texto = document.createTextNode('Viajero: "Nunca podrás capturarnos, tenemos a un fotografo falsificandolo todo"');
+       }
+        
+        parrafo.appendChild(texto);
+        document.getElementById("pista").appendChild(parrafo);
     }
     
-    parrafo.appendChild(texto);
+    pista2 = true;
+}
+
+
+
+
+function textoPista4(){
     
-    document.getElementById("pista").appendChild(parrafo);
+      if(!pista4){
+        
+        document.getElementById("pista").removeChild(document.getElementsByTagName("p")[0]);
+        
+        var parrafo = document.createElement("p");
+        
+        if(english){
+            var texto = document.createTextNode('Photographer: "a romantic sign will start the big countdown"');
+       }else{
+           var texto = document.createTextNode('Fotógrafo: “una romántica señal dará el inicio a la gran cuenta regresiva”');
+       }
+        
+        parrafo.appendChild(texto);
+        document.getElementById("pista").appendChild(parrafo);
+    }
+    
+    pista4 = true;
+    
+}
+
+function textoPista5(){
+    
+    if(!pista5){
+        
+        document.getElementById("pista").removeChild(document.getElementsByTagName("p")[0]);
+        
+        var parrafo = document.createElement("p");
+        
+        if(english){
+            var texto = document.createTextNode('Lovers: "Its too late, the boss is a master of disguise and while escaping activated the mechanism"');
+       }else{
+           var texto = document.createTextNode('Enamorados: “es muy tarde, el jefe es un maestro del disfraz y mientras escapa activó el mecanismo”');
+       }
+        
+        parrafo.appendChild(texto);
+        document.getElementById("pista").appendChild(parrafo);
+    }
+    
+    pista5 = true;
+    
+}
+
+
+function cronometro(){
+    
+    if(centesimas > 0){
+        centesimas--;
+        document.getElementById("Centesimas").innerHTML = ":"+centesimas;
+    }
+    else if(centesimas == 0){
+        centesimas = 60;
+        document.getElementById("Centesimas").innerHTML = ":"+centesimas;
+        segundos--;
+        document.getElementById("Segundos").innerHTML = ":"+segundos;
+    }
+    
+    if(segundos == 0){
+        minutos--;
+        document.getElementById("Minutos").innerHTML = minutos;
+        segundos = 60;
+        document.getElementById("Segundos").innerHTML = ":"+segundos;
+    }
+    
+    if(minutos <= 0){
+        document.getElementById("Minutos").innerHTML = 0;
+        document.getElementById("Segundos").innerHTML = ":"+0;
+        document.getElementById("Centesimas").innerHTML = ":"+0;
+        clearInterval(reloj);
+       
+        //SE CAMBIA LA PANTALLA A GAME OVER
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.font = "bold 30px Consolas";
+        ctx.fillText("GAME OVER",50,50);
+    }
 }
